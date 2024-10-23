@@ -15,11 +15,13 @@ Project Structure
 perl
 Copy code
 .
-├── index.js          # The main script file for scraping Hacker News
-├── package.json      # Contains project dependencies and scripts
-├── package-lock.json # Dependency lock file (auto-generated)
+├── index.js          # The main script file for scraping Hacker News  
+├── package.json      # Contains project dependencies and scripts  
+├── package-lock.json # Dependency lock file (auto-generated)  
 └── .gitignore        # Specifies files to be ignored by git (e.g., node_modules/)
+
 How It Works
+
 The logic used to create this script is as follows:
 
 Set Up Browser Automation:

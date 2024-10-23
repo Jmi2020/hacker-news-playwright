@@ -1,13 +1,17 @@
-Hacker News Scraper using Playwright
+Hacker News Scraper using Playwright  
+
 Project Overview
+
 This project is a web scraping tool built using Playwright, a powerful browser automation library, and chrono-node, a library for parsing dates from natural language strings. The goal of the script is to scrape the first 100 articles from the "newest" section of Hacker News, sort them based on the time they were posted, and verify that they are displayed from newest to oldest.
 
 Features
+
 Scrape 100 articles from the "newest" section of Hacker News.
 Handle pagination: Since only 30 articles are shown per page, the script automatically clicks the "More" link to load additional pages until 100 articles are scraped.
 Timestamps extraction: The script extracts the timestamp of each article (e.g., "5 minutes ago") and converts it into an absolute time for comparison.
 Sorting validation: After scraping the articles, the script checks whether the articles are sorted from newest to oldest based on the timestamp.
 Project Structure
+
 perl
 Copy code
 .

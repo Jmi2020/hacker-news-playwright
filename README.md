@@ -10,10 +10,12 @@ Scrape 100 articles from the "newest" section of Hacker News.
 Handle pagination: Since only 30 articles are shown per page, the script automatically clicks the "More" link to load additional pages until 100 articles are scraped.
 Timestamps extraction: The script extracts the timestamp of each article (e.g., "5 minutes ago") and converts it into an absolute time for comparison.
 Sorting validation: After scraping the articles, the script checks whether the articles are sorted from newest to oldest based on the timestamp.
+
 Project Structure
 
-perl
+perl  
 Copy code
+
 .
 ├── index.js          # The main script file for scraping Hacker News  
 ├── package.json      # Contains project dependencies and scripts  

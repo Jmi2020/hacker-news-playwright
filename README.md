@@ -16,7 +16,7 @@ Project Structure
 perl  
 Copy code
 
-.
+.  
 ├── index.js          # The main script file for scraping Hacker News  
 ├── package.json      # Contains project dependencies and scripts  
 ├── package-lock.json # Dependency lock file (auto-generated)  

@@ -1,57 +1,68 @@
-# 🐺 QA Wolf Take Home Assignment
+Hacker News Scraper using Playwright
+Project Overview
+This project is a web scraping tool built using Playwright, a powerful browser automation library, and chrono-node, a library for parsing dates from natural language strings. The goal of the script is to scrape the first 100 articles from the "newest" section of Hacker News, sort them based on the time they were posted, and verify that they are displayed from newest to oldest.
 
-Welcome to the QA Wolf take home assignment for our [QA Engineer](https://www.notion.so/qawolf/QA-Wolf-QA-Engineer-Remote-156203a1e476459ea5e6ffca972d0efe) role! We appreciate your interest and look forward to seeing what you come up with.
+Features
+Scrape 100 articles from the "newest" section of Hacker News.
+Handle pagination: Since only 30 articles are shown per page, the script automatically clicks the "More" link to load additional pages until 100 articles are scraped.
+Timestamps extraction: The script extracts the timestamp of each article (e.g., "5 minutes ago") and converts it into an absolute time for comparison.
+Sorting validation: After scraping the articles, the script checks whether the articles are sorted from newest to oldest based on the timestamp.
+Project Structure
+perl
+Copy code
+.
+├── index.js          # The main script file for scraping Hacker News
+├── package.json      # Contains project dependencies and scripts
+├── package-lock.json # Dependency lock file (auto-generated)
+└── .gitignore        # Specifies files to be ignored by git (e.g., node_modules/)
+How It Works
+The logic used to create this script is as follows:
 
-## Instructions
+Set Up Browser Automation:
 
-This assignment has two questions as outlined below. When you are done, send [qa-hiring@qawolf.com](mailto:qa-hiring@qawolf.com) the following:
+The script uses Playwright to launch a Chromium browser in non-headless mode. It opens a new tab and navigates to the "newest" section of Hacker News.
+Scraping the Articles:
 
-1. A link to a zip file of this folder on Google Drive 
+The script looks for elements with the class .athing, which corresponds to individual articles on Hacker News.
+For each article, it extracts:
+Title: Retrieved from the .titlelink class within the article element.
+Timestamp: Retrieved from the .age a element, which contains a relative time (e.g., "2 hours ago").
+Handling Pagination:
 
-2. A note indicating your work location (Country/State)
+Since Hacker News only displays 30 articles per page, the script uses the "More" link (.morelink) at the bottom of the page to navigate to the next set of articles.
+This process repeats until 100 articles are collected.
+Convert Timestamps:
 
-3. A note of how you found this job post (LinkedIn, Handshake, Wellfound, referral, etc.)
+The extracted relative timestamps (e.g., "5 minutes ago") are converted into absolute JavaScript Date objects using chrono-node. This allows us to compare the actual times when the articles were posted.
+Sorting Validation:
 
-### Question 1
+Once all 100 articles are collected, the script verifies whether they are correctly sorted from newest to oldest. It does this by comparing the Date objects of each article, ensuring that the timestamp of each article is less than or equal to the previous one.
+Console Output:
 
-In this assignment, you will create a script on [Hacker News](https://news.ycombinator.com/) using JavaScript and Microsoft's [Playwright](https://playwright.dev/) framework. 
+The script logs the timestamps of all 100 articles to the console for reference. It also outputs whether the articles are sorted correctly or not.
+How to Run the Project
+Prerequisites
+Node.js installed.
+Clone this repository or download the project files.
+Run npm install to install the necessary dependencies.
+Commands
+Install dependencies:
 
-1. Install node modules by running `npm i`.
+bash
+Copy code
+npm install
+Run the scraper:
 
-2. Edit the `index.js` file in this project to go to [Hacker News/newest](https://news.ycombinator.com/newest) and validate that EXACTLY the first 100 articles are sorted from newest to oldest. You can run your script with the `node index.js` command.
-
-Note that you are welcome to update Playwright or install other packages as you see fit, however you must utilize Playwright in this assignment.
-
-### Question 2
-
-Why do you want to work at QA Wolf? Please record a short, ~2 min video that includes:
-
-1. Your answer 
-
-2. A walk-through demonstration of your code, showing a successful execution
-
-Post the link in `why_qa_wolf.txt` (Please use [Loom](https://www.loom.com) to record your response). The answer and walkthrough should be combined into *one* video.
-
-## Frequently Asked Questions
-
-### What is your hiring process? When will I hear about next steps?
-
-This take home assignment is the first step in our hiring process, followed by a final round interview if it goes well. **We review every take home assignment submission and promise to get back to you either way within one week (usually sooner).** The only caveat is if we are out of the office, in which case we will get back to you when we return. If it has been more than one week and you have not heard from us, please do follow up.
-
-The final round interview is a 2-hour technical work session that reflects what it is like to work here. We provide a $150 stipend for your time for the final round interview regardless of how it goes. After that, there may be a short chat with our director about your experience and the role.
-
-Our hiring process is rolling where we review candidates until we have filled our openings. If there are no openings left, we will keep your contact information on file and reach out when we are hiring again.
-
-### How do you decide who to hire?
-
-We evaluate candidates based on three criteria:
-
-- Technical ability (as demonstrated in the take home and final round)
-- Customer service orientation (as this role is customer facing)
-- Alignment with our values (captured [here](https://www.notion.so/qawolf/QA-Wolf-QA-Engineer-Remote-156203a1e476459ea5e6ffca972d0efe))
-
-This means whether we hire you is based on how you do during our interview process, not on your previous experience (or lack thereof). Note that you will also need to pass a background check to work here as our customers require this.
-
-### How can I help my application stand out?
-
-We've found that our best hires have been the most enthusiastic throughout our process. If you are very excited about working here, please feel free to go above and beyond on this assignment.
+bash
+Copy code
+node index.js
+Output
+Timestamps: The script will print the timestamps of all 100 articles in the console.
+Sorting Check: The script will indicate whether the articles are sorted from newest to oldest.
+Dependencies
+Playwright: Used for browser automation and scraping the web page.
+Chrono-node: Used to parse human-readable timestamps (like "5 minutes ago") into Date objects.
+Node.js: The runtime environment for running the script.
+Future Improvements
+Error Handling: Add more robust error handling for cases where the page fails to load or if elements are missing.
+Advanced Sorting: Improve sorting validation to handle edge cases where articles may have the exact same timestamp.

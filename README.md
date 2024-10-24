@@ -54,21 +54,24 @@ Run npm install to install the necessary dependencies.
 Commands
 Install dependencies:
 
-bash
-Copy code
-npm install
-Run the scraper:
+bash  
+Copy code  
+npm install  
+Run the scraper:  
 
-bash
-Copy code
-node index.js
-Output
+bash  
+Copy code  
+node index.js  
+Output  
+
 Timestamps: The script will print the timestamps of all 100 articles in the console.
 Sorting Check: The script will indicate whether the articles are sorted from newest to oldest.
-Dependencies
+### Dependencies
+
 Playwright: Used for browser automation and scraping the web page.
 Chrono-node: Used to parse human-readable timestamps (like "5 minutes ago") into Date objects.
 Node.js: The runtime environment for running the script.
-Future Improvements
+## Future Improvements
+
 Error Handling: Add more robust error handling for cases where the page fails to load or if elements are missing.
 Advanced Sorting: Improve sorting validation to handle edge cases where articles may have the exact same timestamp.
